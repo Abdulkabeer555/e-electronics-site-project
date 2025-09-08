@@ -2,7 +2,24 @@ import React, { useState } from 'react';
 import ProductsList from '../components/ProductList.jsx';
 import ProductDetail from '../components/ProductDetail.jsx';
 import CartPage from '../components/CartPage.jsx';
-import './Product.css'
+import './Product.css';
+
+// Image Imports (from src/Public/assets/images/)
+import GamingLaptop from '../../Public/assets/images/gaming-laptop.jpg';
+import Ultrabook from '../../Public/assets/images/ultrabook.jpeg';
+import TwoInOneLaptop from '../../Public/assets/images/best-budget-2-in-1-laptop.webp';
+import HighEndSmartphone from '../../Public/images/highendsmartphone.jpeg';
+import MidRangeSmartphone from '../../Public/images/mid-range-smartphone2.jpeg';
+import BudgetSmartphone from '../../Public/assets/images/budget-smartphone.webp';
+import FoldablePhone from '../../Public/assets/images/foldable-phone2.jpg';
+import Headphone from '../../Public/assets/images/headphone.png';
+import BluetoothSpeaker from '../../Public/assets/images/bluetooth-speaker.jpg';
+import TrueWirelessEarbuds from '../../Public/assets/images/true-wireless-earbuds3.webp';
+import DSLRCamera from '../../Public/assets/images/dslr-camera.webp';
+import MirrorlessCamera from '../../Public/assets/images/mirror-less-camera.jpg';
+import ActionCamera from '../../Public/assets/images/action-camera.jpeg';
+import SmartWatch from '../../Public/assets/images/smart-watch.jpeg';
+import SmartHomeHub from '../../Public/assets/images/smart-home-hub.webp';
 
 function Product() {
   const [currentPage, setCurrentPage] = useState('products');
@@ -10,21 +27,21 @@ function Product() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const products = [
-    { id: 'gaming-laptop', name: 'Gaming Laptop', price: 1200, image: './assets/images/gaming-laptop.jpg' },
-    { id: 'ultrabook', name: 'Ultrabook', price: 950, image: './assets/images/ultrabook.jpeg' },
-    { id: '2-in-1-laptop', name: '2-in-1 Laptop', price: 800, image: './assets/images/best-budget-2-in-1-laptop.webp' },
-    { id: 'highend-smartphone', name: 'High-End Smartphone', price: 750, image: './assets/images/highendsmartphone.jpeg' },
-    { id: 'mid-range-smartphone', name: 'Mid-Range Smartphone', price: 450, image: './assets/images/mid-range-smartphone2.jpeg' },
-    { id: 'budget-smartphone', name: 'Budget Smartphone', price: 200, image: './assets/images/budget-smartphone.webp' },
-    { id: 'foldable-phone', name: 'Foldable Smartphone', price: 1500, image: './assets/images/foldable-phone2.jpg' },
-    { id: 'headphone', name: 'Wireless Headphones', price: 150, image: './assets/images/headphone.png' },
-    { id: 'bluetooth-speaker', name: 'Bluetooth Speaker', price: 75, image: './assets/images/bluetooth-speaker.jpg' },
-    { id: 'true-wireless-earbuds', name: 'True Wireless Earbuds', price: 99, image: './assets/images/true-wireless-earbuds3.webp' },
-    { id: 'dslr-camera', name: 'DSLR Camera', price: 850, image: './assets/images/dslr-camera.webp' },
-    { id: 'mirrorless-camera', name: 'Mirrorless Camera', price: 1100, image: './assets/images/mirror-less-camera.jpg' },
-    { id: 'action-camera', name: 'Action Camera', price: 300, image: './assets/images/action-camera.jpeg' },
-    { id: 'smart-watch', name: 'Smartwatch', price: 250, image: './assets/images/smart-watch.jpeg' },
-    { id: 'smart-home-hub', name: 'Smart Home Hub', price: 120, image: './assets/images/smart-home-hub.webp' },
+    { id: 'gaming-laptop', name: 'Gaming Laptop', price: 1200, image: GamingLaptop },
+    { id: 'ultrabook', name: 'Ultrabook', price: 950, image: Ultrabook },
+    { id: '2-in-1-laptop', name: '2-in-1 Laptop', price: 800, image: TwoInOneLaptop },
+    { id: 'highend-smartphone', name: 'High-End Smartphone', price: 750, image: HighEndSmartphone },
+    { id: 'mid-range-smartphone', name: 'Mid-Range Smartphone', price: 450, image: MidRangeSmartphone },
+    { id: 'budget-smartphone', name: 'Budget Smartphone', price: 200, image: BudgetSmartphone },
+    { id: 'foldable-phone', name: 'Foldable Smartphone', price: 1500, image: FoldablePhone },
+    { id: 'headphone', name: 'Wireless Headphones', price: 150, image: Headphone },
+    { id: 'bluetooth-speaker', name: 'Bluetooth Speaker', price: 75, image: BluetoothSpeaker },
+    { id: 'true-wireless-earbuds', name: 'True Wireless Earbuds', price: 99, image: TrueWirelessEarbuds },
+    { id: 'dslr-camera', name: 'DSLR Camera', price: 850, image: DSLRCamera },
+    { id: 'mirrorless-camera', name: 'Mirrorless Camera', price: 1100, image: MirrorlessCamera },
+    { id: 'action-camera', name: 'Action Camera', price: 300, image: ActionCamera },
+    { id: 'smart-watch', name: 'Smartwatch', price: 250, image: SmartWatch },
+    { id: 'smart-home-hub', name: 'Smart Home Hub', price: 120, image: SmartHomeHub },
   ];
 
   const handleViewDetails = (product) => {
@@ -49,19 +66,17 @@ function Product() {
       }
 
       localStorage.setItem('cart', JSON.stringify(cart));
-      
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 3000);
-
     } catch (e) {
       console.error("Error adding product to cart:", e);
     }
   };
 
   const renderPage = () => {
-    switch(currentPage) {
+    switch (currentPage) {
       case 'products':
         return (
           <ProductsList
@@ -87,9 +102,7 @@ function Product() {
 
   return (
     <div>
-
       {renderPage()}
-
     </div>
   );
 }
