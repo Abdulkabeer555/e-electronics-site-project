@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import useGen from '../hooks/useGen';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function SignUp() {
-
     const [inputName, setInputName] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputPwd, setInputPwd] = useState("");
@@ -15,30 +14,56 @@ export default function SignUp() {
             userName: inputName,
             userEmail: inputEmail,
             userPwd: inputPwd
-        }
+        };
         allUsers.push(newUser);
-        setAllUsers([...allUsers])
+        setAllUsers([...allUsers]);
         navigate("/signin");
     }
 
     return (
-        <div className='border border-primary rounded m-auto px-5 py-5 my-5' style={{ width: "400px" }}>
-            <p className="h3 text-center mb-5">SignUp</p>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={inputName} onChange={(e) => { setInputName(e.target.value) }} />
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={inputEmail} onChange={(e) => { setInputEmail(e.target.value) }} />
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" value={inputPwd} onChange={(e) => { setInputPwd(e.target.value) }} />
-            </div>
-            <button onClick={Reg} class="btn btn-primary">Submit</button>
-            <p><Link to={"/"}>Have An Account ?</Link> </p>
+        <div className="min-vh-100" style={{ backgroundColor: 'lightgray' }}>
+            <section className="py-5">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-8">
+                            <div className="card border-secondary">
+                                <h2 className="text-center mb-4 pt-5">Create Account</h2>
+                                <div className="card-body p-4">
+                                    <form>
+                                        <div className="mb-3">
+                                            <label htmlFor="name" className="form-label">Full Name</label>
+                                            <input type="text" className="form-control" id="name" value={inputName} onChange={(e) => setInputName(e.target.value)} />
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label htmlFor="email" className="form-label">Email address</label>
+                                            <input type="email" className="form-control" id="email" value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} />
+                                            <div id="emailHelp" className="form-text">
+                                                We'll never share your email with anyone else.
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label htmlFor="password" className="form-label">Password</label>
+                                            <input type="password" className="form-control" id="password" value={inputPwd} onChange={(e) => setInputPwd(e.target.value)} />
+                                        </div>
+
+                                        <div className="d-grid">
+                                            <button type="button" onClick={Reg} className="btn btn-primary">
+                                                Sign Up
+                                            </button>
+                                        </div>
+
+                                        <div className="text-center mt-3">
+                                            <p>Already have an account? <Link to="/signin">Sign In</Link></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    )
+    );
 }
