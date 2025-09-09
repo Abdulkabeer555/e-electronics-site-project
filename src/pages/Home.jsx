@@ -22,7 +22,7 @@ function Home() {
           <div className="row row-cols-1 row-cols-md-3 g-4">
             <div className="col">
               <div className="card">
-                <img src={Gaming_Laptop} className="card-img-top" alt="Gaming Laptop" style={{ paddingLeft: "40px", width: "fit-content" }} />
+                <img src={Gaming_Laptop} className="card-img-top" alt="Gaming Laptop" style={{ paddingLeft: "34px", width: "fit-content" }} />
                 <div className="card-body">
                   <h5 className="card-title">Gaming Laptop</h5>
                   <p className="card-text">High-performance laptop for gaming and creative work.</p>
@@ -45,7 +45,7 @@ function Home() {
             </div>
             <div className="col">
               <div className="card h-100">
-                <img src={Wireless_Headphones} className="card-img-top" alt="Headphones" style={{ paddingLeft: "50px", width: "fit-content" }} />
+                <img src={Wireless_Headphones} className="card-img-top" alt="Headphones" style={{ paddingLeft: "38px", width: "fit-content" }} />
                 <div className="card-body">
                   <h5 className="card-title">Wireless Headphones</h5>
                   <p className="card-text">Experience crystal clear audio with these noise-cancelling headphones.</p>
@@ -62,5 +62,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
