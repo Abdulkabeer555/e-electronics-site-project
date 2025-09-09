@@ -1,8 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useGen from '../hooks/useGen';
 
 function Cart({ cartItems = [], onItemUpdate, onBackToProducts }) {
     const navigate = useNavigate()
+    const { login } = useGen()
+function check(){
+  if (!login) {
+      alert("Please sign in first.");
+      return;
+    }
+  }
+
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
     };
@@ -56,7 +65,13 @@ function Cart({ cartItems = [], onItemUpdate, onBackToProducts }) {
                     <button onClick={()=> navigate('/products')} className="btn btn-primary ">
                         Continue Shopping
                     </button>
-                    <button onClick={() => navigate('/checkout')} className="btn btn-success">
+                    <button onClick={() => { 
+                        if(!login){
+                            alert("Please sign in first.");
+                        } else {
+                            navigate('/checkout')
+                        }    
+                    }} className="btn btn-success">
                         Checkout
                     </button>
                 </div>
