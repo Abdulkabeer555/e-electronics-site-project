@@ -1,68 +1,76 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import useGen from '../hooks/useGen';
 import Cookies from 'js-cookie';
 
 export default function SignIn() {
-
     const [inputEmail, setInputEmail] = useState("");
     const [inputPwd, setInputPwd] = useState("");
     const { allUsers, setLogin, setLoginUser } = useGen();
     const navigate = useNavigate();
 
     useEffect(() => {
-        
         const data = Cookies.get('loginData');
 
         if (data) {
             const { inputEmail, inputPwd } = JSON.parse(data);
 
-            const found = allUsers.find((items) => { return items.userEmail == inputEmail && items.userPwd == inputPwd });
-            
+            const found = allUsers.find(user => user.userEmail === inputEmail && user.userPwd === inputPwd);
+
             if (found) {
                 setLoginUser(found);
-                navigate("/profile");
                 setLogin(true);
+                navigate("/profile");
+            } else {
+                console.log("No account matched with cookie data");
             }
-            else {
-               console.log("No Account Is Login")
-            }
-        } else {
-            console.log("No cookie found");
         }
     }, []);
 
-
     function login() {
-        const found = allUsers.find((items) => { return items.userEmail == inputEmail && items.userPwd == inputPwd });
+        const found = allUsers.find(user => user.userEmail === inputEmail && user.userPwd === inputPwd);
         if (found) {
             setLoginUser(found);
-            navigate("/");
             setLogin(true);
             Cookies.set('loginData', JSON.stringify({ inputEmail, inputPwd }));
-            console.log("Cookies Baked");
+            navigate("/");
+        } else {
+            alert("Invalid Email or Password");
         }
-        else {
-            alert("Invalid Email Or Password")
-        }
-
     }
 
-
     return (
-        <div className='border border-primary rounded m-auto px-5 py-5 my-5' style={{ width: "400px" }}>
-            <p className="h3 text-center mb-5">SignIn</p>
-            <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={inputEmail} onChange={(e) => { setInputEmail(e.target.value) }} />
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" value={inputPwd} onChange={(e) => { setInputPwd(e.target.value) }} />
-            </div>
-            <button onClick={login} className="btn btn-primary">Submit</button>
-            <p><Link to={"/signup"}>Dnt have An Account ?</Link> </p>
+        <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'lightgray' }}>
+            <section className="py-5 w-100">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-6">
+                            <div className="card border-secondary shadow">
+                                <div className="card-body p-4">
+                                    <h2 className="text-center mb-4">Sign In</h2>
+                                    <form>
+                                        <div className="mb-3">
+                                            <label htmlFor="email" className="form-label">Email Address</label>
+                                            <input type="email" className="form-control" id="email" value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} required /> 
+                                            <div className="form-text">We'll never share your email with anyone else.</div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="password" className="form-label">Password</label>
+                                            <input type="password" className="form-control" id="password" value={inputPwd} onChange={(e) => setInputPwd(e.target.value)} required />
+                                        </div>
+                                        <div className="d-grid gap-2">
+                                            <button type="button" onClick={login} className="btn btn-primary">Login</button>
+                                        </div>
+                                    </form>
+                                    <p className="mt-3 text-center">
+                                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    )
+    );
 }
