@@ -1,7 +1,7 @@
 import React from 'react';
-import Gaming_Laptop from '../../Public/assets/Images/gaming-laptop.jpg'
-import SmartPhone from '../../Public/assets/Images/highendsmartphone.jpeg'
-import Wireless_Headphones from '../../Public/assets/Images/headphone.png'
+import Gaming_Laptop from '../../Public/assets/images/gaming-laptop.jpg'
+import SmartPhone from '../../Public/assets/images/highendsmartphone.jpeg'
+import Wireless_Headphones from '../../Public/assets/images/headphone.png'
 import './Product.css'
 import { Link } from 'react-router-dom';
 
